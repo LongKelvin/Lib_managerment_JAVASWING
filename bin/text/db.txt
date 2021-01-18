@@ -1,0 +1,3 @@
+jdbc:mysql://localhost/dbcuoiky?useUnicode=yes&characterEncoding=UTF-8
+root
+root
