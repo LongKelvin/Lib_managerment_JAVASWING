@@ -80,6 +80,7 @@ public class BookManager extends JInternalFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 
+		model = new DefaultTableModel();
 		table = new MyTable();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -383,10 +384,18 @@ public class BookManager extends JInternalFrame {
 			lmodel = blang.getAllLangsToModel();
 			cmodel = bcate.getAllCategoriesToModel();
 		} catch (ClassNotFoundException | SQLException e) {
+			JOptionPane.showMessageDialog(null,
+					"Vui Lòng Kiểm Tra Lại Dữ Liệu Của Bạn!",
+					"Đã Có Lỗi Xảy Ra!", JOptionPane.ERROR_MESSAGE);
 		}
-		table.setModel(model);
+
+		if(model!=null)
+			table.setModel(model);
+		if(lmodel!=null)
 		cbLang.setModel(lmodel);
+		if(cmodel!=null)
 		cbCategories.setModel(cmodel);
+		if(tbmodel!=null)
 		cbType.setModel(tbmodel);
 	}
 

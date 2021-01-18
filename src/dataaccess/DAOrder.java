@@ -40,7 +40,7 @@ public class DAOrder {
 	public List<Expired> getAllExpired() throws ClassNotFoundException, SQLException {
 		List<Expired> orders = new ArrayList<Expired>();
 		Connection con = DAConnection.getConnection();
-		String query = "SELECT id, member, staff, book, start_date, end_date, description, datediff(CURRENT_TIMESTAMP,end_date) as quahan FROM orders WHERE end_date is NOT null";
+		String query = "SELECT id, member, staff, book, start_date, end_date, description, datediff (CURRENT_TIMESTAMP,end_date) as quahan FROM orders WHERE end_date is NOT null";
 		PreparedStatement stm = con.prepareStatement(query);
 		ResultSet result = stm.executeQuery();
 		while (result.next()) {

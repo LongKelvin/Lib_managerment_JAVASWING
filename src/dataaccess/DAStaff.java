@@ -97,7 +97,7 @@ public class DAStaff {
 
 	public void insertStaff(Staff staff) throws ClassNotFoundException, SQLException {
 		Connection con = DAConnection.getConnection();
-		String query = "INSERT INTO `staff`(`username`, `password`, `email`, `fullname`, `role`, `activated`, `description`) VALUES (?,?,?,?,?,?,?)";
+		String query = "INSERT INTO `staff` (`username`, `password`, `email`, `fullname`, `role`, `activated`, `description`) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setString(1, staff.getUsername());
 		stm.setString(2, staff.getPassword());

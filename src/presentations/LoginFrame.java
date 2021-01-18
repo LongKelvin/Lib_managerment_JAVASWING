@@ -195,7 +195,7 @@ public class LoginFrame extends JDialog {
 		});
 		loginPanel.add(btnReg, "cell 1 4,growx");
 
-		JLabel label = new JLabel("Phần mềm được phát triển bởi nhóm");
+		JLabel label = new JLabel("Java SE - LibManagerment");
 		contentPane.add(label, BorderLayout.SOUTH);
 		setContentPane(contentPane);
 		pack();
