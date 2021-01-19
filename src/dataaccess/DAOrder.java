@@ -90,13 +90,13 @@ public class DAOrder {
 		stm.setInt(3, order.getBook());
 		stm.setDate(4, new Date(order.getStart_date().getTime()));
 		stm.setDate(5, new Date(order.getEnd_date().getTime()));
-		//stm.setString(6, order.getDescription());
-		String tmp = bMember.getMemberByID(order.getMember()).toString();
-		String tmp2 = bStaff.getStaffByID(order.getStaff()).toString();
-		String tmp3 = bBook.getBookByID(order.getBook()).toString();
-		stm.setString(6, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
-				+ (new Date(order.getEnd_date().getTime())).toString());
-		stm.executeUpdate();
+		stm.setString(6, order.getDescription());
+//		String tmp = bMember.getMemberByID(order.getMember()).toString();
+//		String tmp2 = bStaff.getStaffByID(order.getStaff()).toString();
+//		String tmp3 = bBook.getBookByID(order.getBook()).toString();
+//		stm.setString(6, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
+//				+ (new Date(order.getEnd_date().getTime())).toString());
+//		stm.executeUpdate();
 
 	}
 	/* End hunglv */

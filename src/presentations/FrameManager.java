@@ -298,15 +298,15 @@ public class FrameManager extends JFrame {
             accountFrame = new AccountManager();
             accountFrame.setLocation(80, 80);
             desktopPane.add(accountFrame);
-            //orderFrame = new OrderManager();
-            //orderFrame.setLocation(100, 100);
-            //desktopPane.add(orderFrame);
+            orderFrame = new OrderManager();
+            orderFrame.setLocation(100, 100);
+            desktopPane.add(orderFrame);
             readFrame = new ReaderFrame();
             readFrame.setLocation(120, 120);
             desktopPane.add(readFrame);
-            //staticsFrame = new StaticsFrame();
-            //staticsFrame.setLocation(140, 140);
-            //desktopPane.add(staticsFrame);
+            staticsFrame = new StaticsFrame();
+            staticsFrame.setLocation(140, 140);
+            desktopPane.add(staticsFrame);
 
             //lblStatus.setText("Xin chào " + name + "!");
             //lblStatus.setIcon(on);

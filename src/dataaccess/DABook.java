@@ -181,10 +181,10 @@ public class DABook {
 			double price = result.getDouble(6);
 			int category = result.getInt(7);
 			int type = result.getInt(8);
-			String image = result.getString(9);
-			int language = result.getInt(10);
-			int quantity = result.getInt(11);
-			String description = result.getString(12);
+			String image =""; //result.getString(9);
+			int language = result.getInt(9);
+			int quantity = result.getInt(10);
+			String description = result.getString(11);
 			Book book = new Book(id, published_year, quantity, category, type, language, price, title, author, publisher, image, description);
 			return book;
 		}

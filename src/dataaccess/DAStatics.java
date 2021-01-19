@@ -14,7 +14,7 @@ public class DAStatics {
 	public List<Statics> getDatasetCategory() throws ClassNotFoundException, SQLException {
 		Connection con = DAConnection.getConnection();
 		List<Statics> statics = new ArrayList<Statics>();
-		String query = "SELECT `category`, SUM(`quantity`) as soluong FROM `books`GROUP BY `category` HAVING soluong>0";
+		String query = "SELECT category, SUM(quantity) as soluong FROM books GROUP BY category HAVING SUM(quantity)>0";
 		PreparedStatement stm = con.prepareStatement(query);
 		ResultSet result = stm.executeQuery();
 		while(result.next()){
@@ -29,7 +29,7 @@ public class DAStatics {
 	public List<Statics> getDatasetType() throws ClassNotFoundException, SQLException {
 		Connection con = DAConnection.getConnection();
 		List<Statics> statics = new ArrayList<Statics>();
-		String query = "SELECT `type`, SUM(`quantity`) as soluong FROM `books`GROUP BY `type` HAVING soluong>0";
+		String query = "SELECT type, SUM(quantity) as soluong FROM books GROUP BY type HAVING SUM(quantity)>0";
 		PreparedStatement stm = con.prepareStatement(query);
 		ResultSet result = stm.executeQuery();
 		while(result.next()){
