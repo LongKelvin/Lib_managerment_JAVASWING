@@ -1,0 +1,1 @@
+SQLCMD -S KELVIN-LONG -E -i lib_managerment.sql
