@@ -1,5 +1,5 @@
-# CS112.L12.KHCL
-## Analysis and Design of Algorithms
+# SE330.L11.PMCL
+## JAVA PROGRAMMING LANGUAGE
 This repository is about doing team-working in SE330 course @UIT-VNU
 
 Members:  
@@ -20,3 +20,22 @@ Skype: tin-huynh
  </h1>
 </details>
 
+# Library managerment system
+This is a simple Java Swing project for library managerment
+# Feature
+-Manage borrower
+-Manage book record
+-Manage user
+-Borrowed Books monitoring
+-Returned Book monitor
+-Track borrowed books
+-Track borrowers
+
+
+# Library used
+-jgoodies-forms-1.8.0.jar
+-miglayout15-swing.jar
+-jcalendar-1.4.jar
+-jcommon-1.0.23.jar
+-jfreechart-1.0.19.jar
+-mssql-jdbc-8.4.1.jre11.jar
