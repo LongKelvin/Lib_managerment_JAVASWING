@@ -51,13 +51,14 @@ public class DAMember {
 	public void insert(Member member) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		Connection con = DAConnection.getConnection();
-		String query = "INSERT INTO `members`(`fullname`, `type`, `expired_date`, `description`) VALUES (?,?,?,?)";
+		//String query = "INSERT INTO `members` (`fullname`, `type`, `expired_date`, `description`) VALUES (?,?,?,?)";
+		String query = "INSERT INTO members (`fullname`, type, expired_date, `description`) VALUES (?,?,?,?)";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setString(1, member.getFullname());
 		stm.setInt(2,member.getType());
 		stm.setDate(3,new Date(member.getExpired_date().getTime()));
 		stm.setString(4,member.getDescription());
-		stm.executeUpdate();
+		stm.execute();
 	}
 	public void deleteMemberByID(int id) throws ClassNotFoundException, SQLException{
 		Connection con = DAConnection.getConnection();

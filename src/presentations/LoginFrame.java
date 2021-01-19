@@ -73,6 +73,7 @@ public class LoginFrame extends JDialog {
 						if (isPasswordCorrect(input, temp)) {
 							dispose();
 							frame.management(temp.getId(), temp.getFullname(), temp.getActivated(), temp.getRole());
+							frame.setVisible(true);
 						} else {
 							JOptionPane.showMessageDialog(null, "Sai Tài Khoản hoặc Mật Khẩu. Hãy kiểm tra cẩn thận!",
 									"Đã Có Lỗi Xảy Ra!", JOptionPane.ERROR_MESSAGE);

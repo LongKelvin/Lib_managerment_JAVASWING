@@ -63,7 +63,7 @@ public class DABook {
 		BCategories bCategories=new BCategories();
 		BTypeOfBook bTypeOfBook=new BTypeOfBook();
 		BLanguage bLanguage=new BLanguage();
-		String query = "INSERT INTO books(title, author, publisher, published_year, price, category, type, image, language, quantity, description,descriptioninfo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO books(title, author, publisher, published_year, price, category, type, language, quantity, description,descriptioninfo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setString(1, book.getTitle());
 		stm.setString(2, book.getAuthor());
@@ -72,25 +72,24 @@ public class DABook {
 		stm.setDouble(5, book.getPrice());
 		stm.setInt(6, book.getCategory());
 		stm.setInt(7,book.getType());
-		stm.setString(8, book.getImage());
-		stm.setInt(9, book.getLanguage());
-		stm.setInt(10, book.getQuantity());
-		stm.setString(11, book.getDescription());
+		//stm.setString(8, book.getImage());
+		stm.setInt(8, book.getLanguage());
+		stm.setInt(9, book.getQuantity());
+		stm.setString(10, book.getDescription());
 		String tmp=bCategories.getCateByID(book.getCategory()).toString();
 		tmp+=bLanguage.getLangByID(book.getLanguage()).toString();
 		tmp+=bTypeOfBook.getTypeByID(book.getType()).toString();
 		tmp+=book.toString();
-		stm.setString(12, tmp);
+		stm.setString(11, tmp);
 		stm.executeUpdate();
 	}
 /*end Hung lv*/
 
 	public void deleteBookByID(int id) throws ClassNotFoundException, SQLException {
 		Connection con = DAConnection.getConnection();
-		String query = "UPDATE books SET truonggiday=? WHERE id = ?";
+		String query = "DELETE FROM books  WHERE id = ?";
 		PreparedStatement stm = con.prepareStatement(query);
-		stm.setInt(1, 0);
-		stm.setInt(2, id);
+		stm.setInt(1, id);
 		stm.executeUpdate();
 	}
 
@@ -195,8 +194,18 @@ public class DABook {
 	public List<Book> getSearchBook(String textSearch) throws ClassNotFoundException, SQLException {
 		List<Book> books = new ArrayList<Book>();
 		Connection con = DAConnection.getConnection();
-		String query = "SELECT id, title, author, publisher, published_year, price, category, type, image, language, quantity, description FROM books WHERE descriptioninfo LIKE '%"+textSearch+"%'";
+		String query = "SELECT id, title, author, publisher, published_year, price, category, type, language, quantity, description FROM books  " +
+				" WHERE (title LIKE CONCAT('%',?,'%'))"+
+				" OR (author LIKE CONCAT('%',?,'%'))"+
+				" OR (category LIKE CONCAT('%',?,'%'))"+
+				" OR (published_year LIKE CONCAT('%',?,'%'))"+
+				" ORDER BY id  ASC";
+
 		PreparedStatement stm = con.prepareStatement(query);
+		stm.setString(1,textSearch);
+		stm.setString(2,textSearch);
+		stm.setString(3,textSearch);
+		stm.setString(4,textSearch);
 		ResultSet result = stm.executeQuery();
 		while(result.next()){
 			int id = result.getInt(1);
@@ -207,10 +216,10 @@ public class DABook {
 			double price = result.getDouble(6);
 			int category = result.getInt(7);
 			int type = result.getInt(8);
-			String image = result.getString(9);
-			int language = result.getInt(10);
-			int quantity = result.getInt(11);
-			String description = result.getString(12);
+			String image = "";// result.getString(9);
+			int language = result.getInt(9);
+			int quantity = result.getInt(10);
+			String description = result.getString(11);
 			Book book = new Book(id, published_year, quantity, category, type, language, price, title, author, publisher, image, description);
 			books.add(book);
 		}
