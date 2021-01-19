@@ -168,7 +168,7 @@ public class DABook {
 
 	public Book getBookByName(String string) throws ClassNotFoundException, SQLException {
 		Connection con = DAConnection.getConnection();
-		String query = "SELECT id, title, author, publisher, published_year, price, category, type, image, language, quantity, description FROM books WHERE title=?";
+		String query = "SELECT id, title, author, publisher, published_year, price, category, type, language, quantity, description FROM books WHERE title=?";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setString(1, string);
 		ResultSet result = stm.executeQuery();

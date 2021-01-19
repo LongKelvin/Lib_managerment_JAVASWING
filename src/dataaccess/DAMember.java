@@ -52,7 +52,7 @@ public class DAMember {
 		// TODO Auto-generated method stub
 		Connection con = DAConnection.getConnection();
 		//String query = "INSERT INTO `members` (`fullname`, `type`, `expired_date`, `description`) VALUES (?,?,?,?)";
-		String query = "INSERT INTO members (`fullname`, type, expired_date, `description`) VALUES (?,?,?,?)";
+		String query = "INSERT INTO members (fullname, type, expired_date, description) VALUES (?,?,?,?)";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setString(1, member.getFullname());
 		stm.setInt(2,member.getType());
@@ -62,14 +62,14 @@ public class DAMember {
 	}
 	public void deleteMemberByID(int id) throws ClassNotFoundException, SQLException{
 		Connection con = DAConnection.getConnection();
-		String query = "DELETE FROM `members` WHERE id=?";
+		String query = "DELETE FROM members WHERE id=?";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setInt(1, id);
 		stm.executeUpdate();
 	}
 	public void update(Member member) throws ClassNotFoundException, SQLException{
 		Connection con = DAConnection.getConnection();
-		String query = "UPDATE `members` SET `fullname`=?,`type`=?,`expired_date`=?,`description`=? WHERE id =?";
+		String query = "UPDATE members SET fullname=?,type=?,expired_date=?,description=? WHERE id =?";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setString(1, member.getFullname());
 		stm.setInt(2, member.getType());

@@ -57,6 +57,11 @@ public class AccountManager extends JInternalFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, "cell 0 2,grow");
 
+		//JLabel lblRegister = new JLabel("Đăng ký tài khoản (chỉ dành cho Nhân Viên Thư Viện)");
+		//if(!if (isPasswordCorrect(input, temp)))
+		//loginPanel.add(lblRegister, "cell 0 4,alignx trailing,aligny center");
+
+
 		unactiveTable = new MyTable();
 		unactiveTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -78,6 +83,17 @@ public class AccountManager extends JInternalFrame {
 				}
 			}
 		});
+		JButton btnReg = new JButton("Tạo Tài Khoản Mới Cho Nhân Viên");
+		btnReg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				RegisterFrame reg = new RegisterFrame();
+				reg.setLocationRelativeTo(null);
+				reg.setVisible(true);
+				reg.hasFocus();
+			}
+		});
+		panel.add(btnReg, "cell 0 3,growx,aligny top");
 
 		btnActive = new JButton("Kích Hoạt");
 		btnActive.addActionListener(new ActionListener() {

@@ -182,8 +182,9 @@ public class LoginFrame extends JDialog {
 		});
 		loginPanel.add(btnCancel, "cell 1 2");
 
-		JLabel lblRegister = new JLabel("Đăng ký tài khoản (chỉ dành cho Nhân Viên Thư Viện)");
-		loginPanel.add(lblRegister, "cell 0 4,alignx trailing,aligny center");
+		//JLabel lblRegister = new JLabel("Đăng ký tài khoản (chỉ dành cho Nhân Viên Thư Viện)");
+		//if(!if (isPasswordCorrect(input, temp)))
+		//loginPanel.add(lblRegister, "cell 0 4,alignx trailing,aligny center");
 
 		JButton btnReg = new JButton("Đăng Ký");
 		btnReg.addActionListener(new ActionListener() {
@@ -194,7 +195,7 @@ public class LoginFrame extends JDialog {
 				reg.setVisible(true);
 			}
 		});
-		loginPanel.add(btnReg, "cell 1 4,growx");
+		//loginPanel.add(btnReg, "cell 1 4,growx");
 
 		JLabel label = new JLabel("Java SE - LibManagerment");
 		contentPane.add(label, BorderLayout.SOUTH);
