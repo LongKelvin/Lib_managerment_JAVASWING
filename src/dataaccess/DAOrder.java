@@ -40,7 +40,9 @@ public class DAOrder {
 	public List<Expired> getAllExpired() throws ClassNotFoundException, SQLException {
 		List<Expired> orders = new ArrayList<Expired>();
 		Connection con = DAConnection.getConnection();
-		String query = "SELECT id, member, staff, book, start_date, end_date, description, datediff (CURRENT_TIMESTAMP,end_date) as quahan FROM orders WHERE end_date is NOT null";
+		String query = "SELECT id, member, staff, book, start_date, end_date, description, \n" +
+				"datediff (day,end_date,CURRENT_TIMESTAMP) as quahan FROM orders WHERE end_date is NOT null\n" +
+				"AND datediff (day,end_date,CURRENT_TIMESTAMP)>0 ";
 		PreparedStatement stm = con.prepareStatement(query);
 		ResultSet result = stm.executeQuery();
 		while (result.next()) {
@@ -81,18 +83,18 @@ public class DAOrder {
 		BMember bMember = new BMember();
 		BStaff bStaff = new BStaff();
 		BBook bBook = new BBook();
-		String query = "INSERT INTO `orders`(`member`, `staff`, `book`, `start_date`, `end_date`, `description`,`descriptioninfo`) VALUES (?,?,?,?,?,?,?)";
+		String query = "  INSERT INTO orders (member, staff, book, start_date, end_date, description) VALUES (?,?,?,?,?,?)";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setInt(1, order.getMember());
 		stm.setInt(2, order.getStaff());
 		stm.setInt(3, order.getBook());
 		stm.setDate(4, new Date(order.getStart_date().getTime()));
 		stm.setDate(5, new Date(order.getEnd_date().getTime()));
-		stm.setString(6, order.getDescription());
+		//stm.setString(6, order.getDescription());
 		String tmp = bMember.getMemberByID(order.getMember()).toString();
 		String tmp2 = bStaff.getStaffByID(order.getStaff()).toString();
 		String tmp3 = bBook.getBookByID(order.getBook()).toString();
-		stm.setString(7, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
+		stm.setString(6, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
 				+ (new Date(order.getEnd_date().getTime())).toString());
 		stm.executeUpdate();
 
@@ -129,20 +131,20 @@ public class DAOrder {
 		BMember bMember = new BMember();
 		BStaff bStaff = new BStaff();
 		BBook bBook = new BBook();
-		String query = "UPDATE `orders` SET`member`=?,`staff`=?,`book`=?,`start_date`=?,`end_date`=?,`description`=?,`descriptioninfo`=? WHERE id=?";
+		String query = "UPDATE orders SET member=?,staff=?,book=?,start_date=?,end_date=?,description=? WHERE id=?";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setInt(1, order.getMember());
 		stm.setInt(2, order.getStaff());
 		stm.setInt(3, order.getBook());
 		stm.setDate(4, new Date(order.getStart_date().getTime()));
 		stm.setDate(5, new Date(order.getEnd_date().getTime()));
-		stm.setString(6, order.getDescription());
+		//stm.setString(6, order.getDescription());
 		String tmp = bMember.getMemberByID(order.getMember()).toString();
 		String tmp2 = bStaff.getStaffByID(order.getStaff()).toString();
 		String tmp3 = bBook.getBookByID(order.getBook()).toString();
-		stm.setString(7, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
+		stm.setString(6, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
 				+ (new Date(order.getEnd_date().getTime())).toString());
-		stm.setInt(8, order.getId());
+		stm.setInt(7, order.getId());
 		stm.executeUpdate();
 	}
 
@@ -172,9 +174,17 @@ public class DAOrder {
 	public List<Order> getSearchOrderManager(String textSearch) throws ClassNotFoundException, SQLException {
 		List<Order> orders = new ArrayList<Order>();
 		Connection con = DAConnection.getConnection();
-		String query = "SELECT id, member, staff, book, start_date, end_date, description FROM orders WHERE descriptioninfo LIKE '%"
-				+ textSearch + "%'";
+		String query = "SELECT id, member, staff, book, start_date, end_date, description FROM orders  "+
+				" WHERE (book LIKE CONCAT('%',?,'%'))"+
+				" OR (description LIKE CONCAT('%',?,'%'))"+
+				" OR (staff LIKE CONCAT('%',?,'%'))"+
+				" OR (member LIKE CONCAT('%',?,'%'))"+
+				" ORDER BY id  ASC";
 		PreparedStatement stm = con.prepareStatement(query);
+		stm.setString(1,textSearch);
+		stm.setString(2,textSearch);
+		stm.setString(3,textSearch);
+		stm.setString(4,textSearch);
 		ResultSet result = stm.executeQuery();
 		while (result.next()) {
 			int id = result.getInt(1);
