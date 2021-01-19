@@ -27,7 +27,7 @@ public class Main {
 			frame.setVisible(true);
 
 			LoginFrame dialog = new LoginFrame(frame);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 			dialog.setVisible(true);
 			dialog.setLocationRelativeTo(frame);
 		} catch (ClassNotFoundException | SQLException e) {
