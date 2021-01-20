@@ -96,14 +96,14 @@ public class BookManager extends JInternalFrame {
 					cbCategories.setSelectedItem(table.getModel().getValueAt(c, 6));
 					cbLang.setSelectedItem(String.valueOf(table.getModel().getValueAt(c, 9)));
 					cbType.setSelectedItem(String.valueOf(table.getModel().getValueAt(c, 7)));
-					tfUrl.setText(String.valueOf(table.getModel().getValueAt(c, 8)));
-					lblImg.setSize(150, 150);
-					try {
-						lblImg.setIcon(loader.getIcon(lblImg,
-								loader.loadImage(new URL(String.valueOf(table.getModel().getValueAt(c, 8))))));
-					} catch (MalformedURLException e) {
-						lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
-					}
+					//tfUrl.setText(String.valueOf(table.getModel().getValueAt(c, 8)));
+//					lblImg.setSize(150, 150);
+//					try {
+//						lblImg.setIcon(loader.getIcon(lblImg,
+//								loader.loadImage(new URL(String.valueOf(table.getModel().getValueAt(c, 8))))));
+//					} catch (MalformedURLException e) {
+//						lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
+//					}
 					tfQuan.setText(String.valueOf(table.getModel().getValueAt(c, 10)));
 					desTA.setText(String.valueOf(table.getModel().getValueAt(c, 11)));
 					btnSave.setEnabled(true);
@@ -144,17 +144,17 @@ public class BookManager extends JInternalFrame {
 		insertPnl.add(tfPrice, "cell 3 0,growx");
 		tfPrice.setColumns(5);
 
-		JLabel lblUrl = new JLabel("Đường Dẫn Ảnh *");
-		insertPnl.add(lblUrl, "cell 4 0,alignx leading");
+		//JLabel lblUrl = new JLabel("Đường Dẫn Ảnh *");
+		//insertPnl.add(lblUrl, "cell 4 0,alignx leading");
 
-		tfUrl = new JTextField();
-		insertPnl.add(tfUrl, "cell 5 0,growx");
-		tfUrl.setColumns(5);
+//		tfUrl = new JTextField();
+//		insertPnl.add(tfUrl, "cell 5 0,growx");
+//		tfUrl.setColumns(5);
 
-		lblImg = new JLabel();
-		insertPnl.add(lblImg, "cell 6 0 1 5");
-		lblImg.setSize(150, 150);
-		lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
+//		lblImg = new JLabel();
+//		insertPnl.add(lblImg, "cell 6 0 1 5");
+//		lblImg.setSize(150, 150);
+//		lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
 
 		JLabel lblAuthor = new JLabel("Tác Giả *");
 		insertPnl.add(lblAuthor, "cell 0 1,alignx leading");
@@ -218,18 +218,18 @@ public class BookManager extends JInternalFrame {
 				lblStatus.setIcon(querying);
 				lblStatus.setText("Querying...");
 				if (tfAuthor.getText().equals("") || tfPrice.getText().equals("") || tfPublisher.getText().equals("")
-						|| tfQuan.getText().equals("") || tfTittle.getText().equals("") || tfUrl.getText().equals("")
+						|| tfQuan.getText().equals("") || tfTittle.getText().equals("")
 						|| tfYear.getText().equals(""))
 					JOptionPane.showMessageDialog(null,
 							"Các trường có dấu (*) là bắt buộc, không được phép bỏ trống, vui lòng kiểm tra lại!",
 							"Đã Có Lỗi Xảy Ra!", JOptionPane.ERROR_MESSAGE);
 				else {
 
-					try {
-						lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage(new URL(tfUrl.getText()))));
-					} catch (MalformedURLException e) {
-						lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
-					}
+//					try {
+//						lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage(new URL(tfUrl.getText()))));
+//					} catch (MalformedURLException e) {
+//						lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
+//					}
 					Book book = new Book();
 					book.setTitle(tfTittle.getText());
 					book.setAuthor(tfAuthor.getText());
@@ -240,7 +240,7 @@ public class BookManager extends JInternalFrame {
 					book.setCategory(cbCategories.getSelectedIndex() + 1);
 					book.setType(cbType.getSelectedIndex() + 1);
 					book.setLanguage(cbLang.getSelectedIndex() + 1);
-					book.setImage(tfUrl.getText());
+					book.setImage("");
 					book.setDescription(desTA.getText());
 					try {
 						bbook.insert(book);
@@ -265,7 +265,7 @@ public class BookManager extends JInternalFrame {
 				lblStatus.setIcon(querying);
 				lblStatus.setText("Querying...");
 				if (tfAuthor.getText().equals("") || tfPrice.getText().equals("") || tfPublisher.getText().equals("")
-						|| tfQuan.getText().equals("") || tfTittle.getText().equals("") || tfUrl.getText().equals("")
+						|| tfQuan.getText().equals("") || tfTittle.getText().equals("")
 						|| tfYear.getText().equals(""))
 					JOptionPane.showMessageDialog(null,
 							"Các trường có dấu (*) là bắt buộc, không được phép bỏ trống, vui lòng kiểm tra lại!",
@@ -273,11 +273,11 @@ public class BookManager extends JInternalFrame {
 				else {
 					if (JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn thực hiện thay đổi?", "Lưu ý",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-						try {
-							lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage(new URL(tfUrl.getText()))));
-						} catch (MalformedURLException e1) {
-							lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
-						}
+//						try {
+//							lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage(new URL(tfUrl.getText()))));
+//						} catch (MalformedURLException e1) {
+//							lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
+//						}
 						Book book = new Book();
 						book.setId(choose);
 						book.setTitle(tfTittle.getText());
@@ -289,7 +289,7 @@ public class BookManager extends JInternalFrame {
 						book.setCategory(cbCategories.getSelectedIndex() + 1);
 						book.setType(cbType.getSelectedIndex() + 1);
 						book.setLanguage(cbLang.getSelectedIndex() + 1);
-						book.setImage(tfUrl.getText());
+						//book.setImage(tfUrl.getText());
 						book.setDescription(desTA.getText());
 						try {
 							bbook.update(book);
@@ -418,9 +418,9 @@ public class BookManager extends JInternalFrame {
 		cbCategories.setSelectedIndex(0);
 		cbLang.setSelectedItem(0);
 		cbType.setSelectedItem(0);
-		tfUrl.setText("");
-		lblImg.setSize(150, 150);
-		lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
+		//tfUrl.setText("");
+		//lblImg.setSize(150, 150);
+		//lblImg.setIcon(loader.getIcon(lblImg, loader.loadImage("not_found_image.jpg")));
 		tfQuan.setText("");
 		desTA.setText("");
 		btnSave.setEnabled(false);

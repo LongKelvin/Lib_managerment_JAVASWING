@@ -63,7 +63,7 @@ public class DABook {
 		BCategories bCategories=new BCategories();
 		BTypeOfBook bTypeOfBook=new BTypeOfBook();
 		BLanguage bLanguage=new BLanguage();
-		String query = "INSERT INTO books(title, author, publisher, published_year, price, category, type, language, quantity, description,descriptioninfo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO books(title, author, publisher, published_year, price, category, type, language, quantity, description) VALUES(?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stm = con.prepareStatement(query);
 		stm.setString(1, book.getTitle());
 		stm.setString(2, book.getAuthor());
@@ -76,11 +76,11 @@ public class DABook {
 		stm.setInt(8, book.getLanguage());
 		stm.setInt(9, book.getQuantity());
 		stm.setString(10, book.getDescription());
-		String tmp=bCategories.getCateByID(book.getCategory()).toString();
-		tmp+=bLanguage.getLangByID(book.getLanguage()).toString();
-		tmp+=bTypeOfBook.getTypeByID(book.getType()).toString();
-		tmp+=book.toString();
-		stm.setString(11, tmp);
+//		String tmp=bCategories.getCateByID(book.getCategory()).toString();
+//		tmp+=bLanguage.getLangByID(book.getLanguage()).toString();
+//		tmp+=bTypeOfBook.getTypeByID(book.getType()).toString();
+//		tmp+=book.toString();
+//		stm.setString(11, tmp);
 		stm.executeUpdate();
 	}
 /*end Hung lv*/
@@ -116,9 +116,9 @@ public class DABook {
 		BCategories bCategories=new BCategories();
 		BTypeOfBook bTypeOfBook=new BTypeOfBook();
 		BLanguage bLanguage=new BLanguage();
-		String query = "UPDATE books SET title=?, author=?, publisher=?, published_year=?, price=?, category=?, type=?, image=?, language=?, quantity=?, description=?,descriptioninfo=? WHERE id=?";
+		String query = "UPDATE books SET title=?, author=?, publisher=?, published_year=?, price=?, category=?, type=?, image=?, language=?, quantity=?, description=? WHERE id=?";
 		PreparedStatement stm = con.prepareStatement(query);
-		stm.setInt(13, book.getId());
+		stm.setInt(12, book.getId());
 		stm.setString(1, book.getTitle());
 		stm.setString(2, book.getAuthor());
 		stm.setString(3, book.getPublisher());
@@ -130,12 +130,12 @@ public class DABook {
 		stm.setInt(9, book.getLanguage());
 		stm.setInt(10, book.getQuantity());
 		stm.setString(11, book.getDescription());
-		String tmp=bCategories.getCateByID(book.getCategory()).toString();
-		tmp+=bLanguage.getLangByID(book.getLanguage()).toString();
-		tmp+=bTypeOfBook.getTypeByID(book.getType()).toString();
-		tmp+=book.toString();
-		
-		stm.setString(12, tmp);
+//		String tmp=bCategories.getCateByID(book.getCategory()).toString();
+//		tmp+=bLanguage.getLangByID(book.getLanguage()).toString();
+//		tmp+=bTypeOfBook.getTypeByID(book.getType()).toString();
+//		tmp+=book.toString();
+//
+		//stm.setString(12, tmp);
 		stm.executeUpdate();
 	}
 
