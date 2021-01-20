@@ -236,10 +236,10 @@ public class DABook {
 	}
 	public void addQuantityById(int id, int quantity) throws ClassNotFoundException, SQLException {
 		Connection con = DAConnection.getConnection();
-		String query = "UPDATE books SET quantity = ? WHERE id=?";
+		String query = "UPDATE books SET quantity = quantity+1 WHERE id=?";
 		PreparedStatement stm = con.prepareStatement(query);
-		stm.setInt(1, quantity+1);
-		stm.setInt(2, id);
+		//stm.setInt(1, quantity+1);
+		stm.setInt(1, id);
 		stm.executeUpdate();
 	}
 

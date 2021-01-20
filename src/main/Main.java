@@ -24,6 +24,7 @@ public class Main {
 		try {
 			DAConnection.getConnection();
 			FrameManager frame = new FrameManager();
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			frame.setVisible(true);
 
 			LoginFrame dialog = new LoginFrame(frame);

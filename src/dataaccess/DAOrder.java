@@ -96,7 +96,7 @@ public class DAOrder {
 //		String tmp3 = bBook.getBookByID(order.getBook()).toString();
 //		stm.setString(6, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
 //				+ (new Date(order.getEnd_date().getTime())).toString());
-//		stm.executeUpdate();
+		stm.executeUpdate();
 
 	}
 	/* End hunglv */
@@ -142,8 +142,9 @@ public class DAOrder {
 		String tmp = bMember.getMemberByID(order.getMember()).toString();
 		String tmp2 = bStaff.getStaffByID(order.getStaff()).toString();
 		String tmp3 = bBook.getBookByID(order.getBook()).toString();
-		stm.setString(6, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
-				+ (new Date(order.getEnd_date().getTime())).toString());
+//		stm.setString(6, tmp + tmp2 + tmp3 + (new Date(order.getStart_date().getTime())).toString()
+//				+ (new Date(order.getEnd_date().getTime())).toString());
+		stm.setString(6,order.getDescription());
 		stm.setInt(7, order.getId());
 		stm.executeUpdate();
 	}
@@ -175,7 +176,6 @@ public class DAOrder {
 		List<Order> orders = new ArrayList<Order>();
 		Connection con = DAConnection.getConnection();
 		String query = "SELECT id, member, staff, book, start_date, end_date, description FROM orders  "+
-				" WHERE (book LIKE CONCAT('%',?,'%'))"+
 				" OR (description LIKE CONCAT('%',?,'%'))"+
 				" OR (staff LIKE CONCAT('%',?,'%'))"+
 				" OR (member LIKE CONCAT('%',?,'%'))"+
