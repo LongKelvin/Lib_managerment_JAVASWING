@@ -24,6 +24,7 @@ import business.BBook;
 import business.BMember;
 import business.BOrder;
 import business.BStaff;
+import dataaccess.DAOrder;
 import entities.Order;
 
 import javax.swing.ListSelectionModel;
@@ -131,6 +132,7 @@ public class OrderManager extends JInternalFrame {
                                 e1.printStackTrace();
                             }
                             initModel();
+                            reset();
                         } else
                             JOptionPane.showMessageDialog(null,
                                     "Ngày Cho Mượn lớn hơn hoặc bằng Ngày Hết Hạn, hãy kiểm tra cẩn thận!",
@@ -141,6 +143,20 @@ public class OrderManager extends JInternalFrame {
                                 "Đã có lỗi xảy ra!", JOptionPane.ERROR_MESSAGE);
                     }
                 }
+
+//                DAOrder orderDAL = new DAOrder();
+//                BOrder bOrder = new BOrder();
+//                try {
+//                    Date start = formatter.parse("2021-1-20");
+//                    Date end = formatter.parse("2021-1-25");
+//                    Order oder = new Order(1,1,1,2,start,end,"no description");
+//                    orderDAL.insert(oder);
+//                } catch (ParseException | ClassNotFoundException | SQLException parseException) {
+//                    parseException.printStackTrace();
+//                }
+//                initModel();
+//                reset();
+
             }
         });
 

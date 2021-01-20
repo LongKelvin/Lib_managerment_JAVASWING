@@ -78,8 +78,8 @@ public class BOrder {
 		bBook.subQuantityById(order.getBook());
 	}
 	public void deleteOrderByID(int choose) throws ClassNotFoundException, SQLException {
-		daOrder.deleteOrderByID(choose);   
-		bBook.addQuantityById(getOrderById(choose).getBook()); 
+		bBook.addQuantityById(getOrderById(choose).getBook());
+		daOrder.deleteOrderByID(choose);
 	}
 	private Order getOrderById(int choose) throws ClassNotFoundException, SQLException {
 		return daOrder.getOrderById(choose);
