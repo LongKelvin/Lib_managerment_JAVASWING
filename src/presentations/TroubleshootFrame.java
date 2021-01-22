@@ -11,14 +11,9 @@ import java.io.Writer;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+import javax.swing.*;
+
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import dataaccess.DAConnection;
 
@@ -29,6 +24,7 @@ public class TroubleshootFrame extends JFrame{
 	private JTextField tfUsername;
 	private JPasswordField tfPassword;
 
+
 	private Scanner sc;
 
 	/**
@@ -36,7 +32,7 @@ public class TroubleshootFrame extends JFrame{
 	 */
 	public TroubleshootFrame() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		File file = new File("src/text/db.txt");
+		File file = new File("src/text/themes.txt");
 		try {
 			sc = new Scanner(file);
 		} catch (FileNotFoundException e2) {
@@ -46,12 +42,13 @@ public class TroubleshootFrame extends JFrame{
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
-		JLabel lblDatabaseUrl = new JLabel("Database URL");
+		JLabel lblDatabaseUrl = new JLabel("Themes Available ");
 		contentPane.add(lblDatabaseUrl, "cell 0 0,alignx trailing");
 		tfUrl = new JTextField();
-		if (sc.hasNextLine()) {
-			tfUrl.setText(sc.nextLine());
-		}
+//		if (sc.hasNextLine()) {
+//			tfUrl.setText(sc.nextLine());
+//		}
+
 		contentPane.add(tfUrl, "cell 1 0,growx");
 		tfUrl.setColumns(10);
 

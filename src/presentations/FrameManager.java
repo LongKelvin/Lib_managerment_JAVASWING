@@ -201,20 +201,20 @@ public class FrameManager extends JFrame {
         btnStatics.setIcon(new ImageIcon(loader.loadImage("statics.png")));
         btnPanel.add(btnStatics);
 
-//		btnSetup = new MyButton("Cài Đặt Hệ Thống");
-//		btnSetup.setIcon(new ImageIcon(loader.loadImage("setting.png")));
-//		btnSetup.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//
-//				SettingFrame setting = new SettingFrame();
-//				setting.setVisible(true);
-//				setting.setLocationRelativeTo(frame);
-//			}
-//		});
+		btnSetup = new MyButton("Cài Đặt Hệ Thống");
+		btnSetup.setIcon(new ImageIcon(loader.loadImage("setting.png")));
+		btnSetup.addActionListener(new ActionListener() {
 
-        //btnPanel.add(btnSetup);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				SettingFrame setting = new SettingFrame();
+				setting.setVisible(true);
+				setting.setLocationRelativeTo(frame);
+			}
+		});
+
+        btnPanel.add(btnSetup);
 
         btnLogout = new MyButton("Đăng Xuất");
         btnLogout.addActionListener(new ActionListener() {
